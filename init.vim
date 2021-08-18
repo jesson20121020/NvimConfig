@@ -134,8 +134,10 @@ Plug 'jesson20121020/leetcode.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'Eric-Song-Nop/vim-glslx'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-scripts/vcscommand.vim'
 call plug#end()
 
+let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-marketplace']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline 插件配置
@@ -158,7 +160,14 @@ let airline#extensions#coc#warning_symbol = ':'
 let airline#extensions#coc#stl_format_err = '%×e(#%fe)]}'
 " change warning format: >
 let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
-
+let airline#extensions#tabline#enabled = 1
+" support coc-git
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#use_vcscommand = 1
+let g:airline#extensions#branch#empty_message = ''
+let g:airline#extensions#branch#displayed_head_limit = 10
+let g:airline#extensions#branch#format = 2
+let g:airline#extensions#hunks#coc_git = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -180,6 +189,7 @@ noremap <C-F> :<C-U><C-R>=printf("Leaderf rg -e %s ", expand("<cword>"))<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  coc 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set completeopt=menuone,noselect
 " TextEdit might fail if hidden is not set.
 set hidden
 " Some servers have issues with backup files, see #649.
@@ -189,7 +199,7 @@ set nowritebackup
 set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=300
+set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 " Always show the signcolumn, otherwise it would shift the text each time
@@ -216,7 +226,7 @@ endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <c-p> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
@@ -318,7 +328,14 @@ nmap <F2> :CocCommand explorer<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  coc-git 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  coc-translator 插件设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" popup
+nmap <Leader>t <Plug>(coc-translator-p)
+vmap <Leader>t <Plug>(coc-translator-pv)
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
