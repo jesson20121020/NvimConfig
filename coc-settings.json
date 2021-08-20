@@ -75,7 +75,7 @@
 		"--ignore=D4"
 	],
 	"python.linting.enabled": true,
-	"translator.engines": ["google", "bing", "youdao"],
+	"translator.engines": ["bing", "youdao"],
 	"explorer.sources": [
 		{
 			"name": "buffer",
