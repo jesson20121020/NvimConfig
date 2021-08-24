@@ -19,6 +19,7 @@ set whichwrap+=<,>,h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 set clipboard+=unnamed
+"set bin noeol            " 默认文末不添加新行
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif " 打开文件自动定位到最后编辑的位置
 
 
@@ -135,6 +136,7 @@ Plug 'djoshea/vim-autoread'
 Plug 'Eric-Song-Nop/vim-glslx'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/vcscommand.vim'
+Plug 'puremourning/vimspector'
 call plug#end()
 
 let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-marketplace']
@@ -466,6 +468,32 @@ let g:Lf_Extensions.commands = {
 		\ }
 
 nmap <S-p> :Leaderf --nowrap commands<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimspector 插件设置, 快捷键说明
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =========================================================================================================================
+" |      _Key_      |                _Mapping_                |                         _Function_                        |
+" =========================================================================================================================
+" | 'F5'            | '<Plug>VimspectorContinue'              | When debugging, continue. Otherwise start debugging.      |
+" -------------------------------------------------------------------------------------------------------------------------
+" | 'F6'            | '<Plug>VimspectorStop/Reset'            | Stop and reset debugging.                                 |
+" -------------------------------------------------------------------------------------------------------------------------
+" | 'F9'            | '<Plug>VimspectorToggleBreakpoint'      | Toggle line breakpoint on the current line.               |
+" -------------------------------------------------------------------------------------------------------------------------
+" | 'F10'           | '<Plug>VimspectorStepOver'              | Step Over                                                 |
+" -------------------------------------------------------------------------------------------------------------------------
+" | 'F11'           | '<Plug>VimspectorStepInto'              | Step Into                                                 |
+" -------------------------------------------------------------------------------------------------------------------------
+" | 'F12'           | '<Plug>VimspectorStepOut'               | Step out of current function scope                        |
+" -------------------------------------------------------------------------------------------------------------------------
+nmap <F5> <Plug>VimspectorContinue<CR>
+nmap <F6> :call vimspector#Stop() \| call vimspector#Reset()<CR>
+nmap <F9> <Plug>VimspectorToggleBreakpoint<CR>
+nmap <F10> <Plug>VimspectorStepOver<CR>
+nmap <F11> <Plug>VimspectorStepInto<CR>
+nmap <F12> <Plug>VimspectorStepOut<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义命令

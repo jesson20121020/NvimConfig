@@ -1,0 +1,63 @@
+{
+	"configurations": {
+		"python:launch2": {
+			"adapter": "debugpy",
+			"configuration": {
+				"name": "Python: Launch",
+				"type": "python",
+				"request": "launch",
+				"python": "/usr/bin/python",
+				"stopOnEntry": true,
+				"console": "externalTerminal",
+				"externalConsole": true,
+				"debugOptions": [],
+				"program": "${file}",
+				"justMyCode": true,
+				"breakpointers": {
+					"exception": {
+						"python_throw": "Y",
+						"python_catch": "N"
+					}
+				}
+			}
+		},
+		"cpp:launch": {
+			"adapter": "vscode-cpptools",
+			"configuration": {
+				"name": "cpp:launch",
+				"stopAtEntry": true,
+				"type": "cppdbg",
+				"request": "launch",
+				"program": "${workspaceRoot}/../build/cpp/test.out",
+				"args": [],
+				"cwd": "${workspaceRoot}",
+				"environment": [],
+				"externalConsole": true,
+				"MIMode": "gdb",
+				"breakpointers": {
+					"exception": {
+						"cpp_throw": "Y",
+						"cpp_catch": "N"
+					}
+				}
+			}
+		},
+		"cpp:attach": {
+			"adapter": "vscode-cpptools",
+			"configuration": {
+				"name": "cpp:attach",
+				"stopAtEntry": true,
+				"type": "cppdbg",
+				"request": "attach",
+				"program": "${workspaceRoot}/../build/cpp/test.out",
+				"MIMode": "gdb",
+				"breakpointers": {
+					"exception": {
+						"cpp_throw": "Y",
+						"cpp_catch": "N"
+					}
+				}
+			}
+		}
+	}
+}
