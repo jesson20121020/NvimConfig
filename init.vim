@@ -140,7 +140,7 @@ Plug 'puremourning/vimspector'
 " Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 
-let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-marketplace']
+let g:coc_global_extensions = ['coc-explorer', 'coc-translator', 'coc-json', 'coc-vimlsp', 'coc-marketplace', 'coc-python', 'coc-git', 'coc-vimlsp', 'coc-omnisharp', 'coc-snippets', 'coc-xml', 'coc-sourcekit', 'coc-cmake', 'coc-glslx', 'coc-java', 'coc-clangd']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline 插件配置
@@ -357,6 +357,10 @@ autocmd FileType markdown nnoremap <silent> <leader>p :call mdip#MarkdownClipboa
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  asynctasks 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let os = substitute(system('uname'), "\n", "", "")
+if (os == "Darwin")
+	let g:asynctasks_system = 'macos'
+endif
 let g:asyncrun_open = 15
 let g:asynctasks_term_pos = 'quickfix'
 function! s:lf_task_source(...)

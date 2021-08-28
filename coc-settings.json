@@ -63,7 +63,6 @@
 		"120",
 		"--experimental"
 	],
-	"python.pythonPath": "/usr/bin/python2.7",
 	"python.linting.flake8Enabled": true,
 	"python.linting.pylintEnabled": false,
 	"python.linting.flake8Args": [
