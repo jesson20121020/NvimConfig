@@ -29,10 +29,7 @@ local function disgnostic_settings()
     -- diagnostic style customization
     vim.diagnostic.config(
         {
-            virtual_text = {
-                prefix = "●",
-                source = "always"
-            },
+            virtual_text=false,
             float = {
                 source = "always"
             },
@@ -43,7 +40,6 @@ end
 
 local function attach(client, bufnr)
     -- require("aerial").on_attach(client, bufnr)
-    disgnostic_settings()
 end
 
 -- automatically install or start LanguageServers
@@ -76,3 +72,9 @@ for server_name, server_options in pairs(servers) do
         end
     end
 end
+
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
+vim.keymap.set('n', '<leader>gh', vim.lsp.buf.declaration, bufopts)
+vim.keymap.set('n', '<leader>gg', vim.lsp.buf.definition, bufopts)
+vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
+vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, bufopts)

@@ -179,7 +179,9 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'j-hui/fidget.nvim'
-Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+Plug 'tami5/lspsaga.nvim'
+Plug 'stevearc/aerial.nvim'
+
 
 call plug#end()
 
@@ -204,17 +206,25 @@ require("configure.plugins.nvim-cmp")
 require("configure.plugins.lsp_signature")
 require("configure.plugins.fidget")
 require("configure.plugins.lspsaga")
+require("configure.plugins.aerial")
 EOF
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 全局快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <F2> <cmd>NvimTreeToggle<cr>
 nnoremap <C-P> <cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({}))<cr>
 nnoremap <C-F> <cmd>lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <C-Y> <cmd>lua require('telescope').extensions.aerial.aerial(require('telescope.themes').get_dropdown({}))<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>fd <cmd>TodoTelescope<cr>"
-
-nnoremap <F2> <cmd>NvimTreeToggle<cr>
+nnoremap <leader>fd <cmd>TodoTelescope<cr>
+nnoremap gr <cmd>Lspsaga rename<cr>
+nnoremap gx <cmd>Lspsaga code_action<cr>
+nnoremap K  <cmd>Lspsaga hover_doc<cr>
+nnoremap gd <cmd>Lspsaga show_line_diagnostics<cr>
+nnoremap gj <cmd>Lspsaga diagnostic_jump_next<cr>
+nnoremap gk <cmd>Lspsaga diagnostic_jump_prev<cr>
+nnoremap gp <cmd>Lspsaga preview_definition<cr>

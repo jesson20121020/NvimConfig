@@ -50,7 +50,7 @@ local function disable_publish_dianotices(a, params, client_id, c, config)
 end
 
 local diagnostic_opts = {
-    underline = true,
+    underline = false,
     virtual_text = false, -- this it what you're looking for
     signs = true,
     update_in_insert = false,

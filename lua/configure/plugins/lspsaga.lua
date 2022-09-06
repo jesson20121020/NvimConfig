@@ -1,4 +1,5 @@
 -- https://github.com/tami5/lspsaga.nvim
+
 local icons = require("utils.icons")
 local mapping = require("core.mapping")
 
@@ -18,7 +19,7 @@ require("lspsaga").setup(
             enable = false,
             sign = true,
             sign_priority = 40,
-            virtual_text = true
+            virtual_text = false
         },
         code_action_keys = {
             quit = mapping.plugin.lspsaga.quit,
