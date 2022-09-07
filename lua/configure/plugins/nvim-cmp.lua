@@ -1,5 +1,25 @@
+-- https://github.com/hrsh7th/nvim-cmp
+-- https://github.com/hrsh7th/vim-vsnip
+-- https://github.com/hrsh7th/cmp-vsnip
+-- https://github.com/hrsh7th/cmp-nvim-lsp
+-- https://github.com/hrsh7th/cmp-path
+-- https://github.com/hrsh7th/cmp-buffer
+-- https://github.com/hrsh7th/cmp-cmdline
+-- https://github.com/rafamadriz/friendly-snippets
+-- https://github.com/tzachar/cmp-tabnine
+-- https://github.com/kristijanhusak/vim-dadbod-completion
+
+-- FIX: Manually install Tabnine when there is an error in Tabnine
+--    TabNine is not executable
+-- Requires curl and unzip
+--    ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
+
 local mapping = require("core.mapping")
+
 local lspkind = require("lspkind")
+
+local icons = require("utils.icons")
+
 local cmp = require("cmp")
 
 local kind_priority = {
@@ -55,6 +75,9 @@ end
 cmp.setup(
     ---@diagnostic disable-next-line: redundant-parameter
     {
+        experimental = {
+            ghost_text = true
+        },
         snippet = {
             expand = function(args)
                 vim.fn["vsnip#anonymous"](args.body)
@@ -91,7 +114,14 @@ cmp.setup(
                     before = function(entry, vim_item)
                         vim_item.menu = "<" .. string.upper(entry.source.name) .. ">"
                         return vim_item
-                    end
+                    end,
+                    menu = {
+                        buffer = 'buffer',
+                        nvim_lsp = '[LSP]',
+                        nvim_lua = '[API]',
+                        path = '[PATH]',
+                        luasnip = '[SNIP]',
+                    },
                 }
             )
         },

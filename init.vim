@@ -214,6 +214,7 @@ EOF
 " 全局快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F2> <cmd>NvimTreeToggle<cr>
+nnoremap <S-P> <cmd>Telescope<cr>
 nnoremap <C-P> <cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({}))<cr>
 nnoremap <C-F> <cmd>lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<cr>
 nnoremap <C-Y> <cmd>lua require('telescope').extensions.aerial.aerial(require('telescope.themes').get_dropdown({}))<cr>

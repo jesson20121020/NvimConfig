@@ -11,6 +11,7 @@ require("nvim-lsp-installer").setup({
     }
 })
 
+local mapping = require("core.mapping")
 local notices = require("utils.notices")
 
 local lsp_installer_servers = require("nvim-lsp-installer.servers")
@@ -22,7 +23,8 @@ local servers = {
     vimls = require("configure.lsp.vimls"),
     sumneko_lua = require("configure.lsp.sumneko_lua"),
     pyright = require("configure.lsp.pyright"),
-    clangd = require("configure.lsp.clangd")
+    clangd = require("configure.lsp.clangd"),
+    jsonls = require("configure.lsp.jsonls")
 }
 
 local function disgnostic_settings()
@@ -39,7 +41,9 @@ local function disgnostic_settings()
 end
 
 local function attach(client, bufnr)
-    -- require("aerial").on_attach(client, bufnr)
+    require("aerial").on_attach(client, bufnr)
+    mapping.register("buffer", "nvim_lsp_installer", bufnr)
+    disgnostic_settings()
 end
 
 -- automatically install or start LanguageServers
@@ -58,7 +62,7 @@ for server_name, server_options in pairs(servers) do
                 }
                 -- instead of built-in omnifunc
                 server_options.capabilities = capabilities
-                require('lspconfig')[server_name].setup{server_options}
+                require("lspconfig")[server_name].setup(server_options)
             end
         )
         -- auto install if language server is not ready

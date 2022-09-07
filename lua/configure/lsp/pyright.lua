@@ -50,7 +50,7 @@ local function disable_publish_dianotices(a, params, client_id, c, config)
 end
 
 local diagnostic_opts = {
-    underline = false,
+    underline = true,
     virtual_text = false, -- this it what you're looking for
     signs = true,
     update_in_insert = false,
@@ -75,14 +75,15 @@ return {
             analysis = {
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
-                typeCheckingMode = "basic", -- off, basic, strict
+                typeCheckingMode = "off", -- off, basic, strict
                 useLibraryCodeForTypes = true,
                 autoImportCompletions = false,
                 diagnosticSeverityOverrides = {
                     reportUndefinedVariable = "error",
                     reportMissingTypeStubs = "none",
                     reportIncompleteStub = "none",
-                    reportInvalidStubStatement = "none"
+                    reportInvalidStubStatement = "none",
+                    reportOptionalMemberAccess = "none"
                 }
             }
         }
